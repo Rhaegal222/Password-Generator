@@ -56,7 +56,7 @@
                 <div class="w-full flex flex-col items-center justify-center">
 
                     <div class="relative w-2/5">
-                        <input type="text" id="password"
+                        <input type="text" id="password" name="password"
                                class="h-12 w-full p-4 pr-12 dark:text-black/70 bg-white rounded-lg border"
                                placeholder="Generated Password"/>
 
@@ -71,11 +71,11 @@
                         <div class="flex flex-row items-center justify-evenly gap-4 mt-4">
                             <label for="length" class="text-lg font-bold text-gradient whitespace-nowrap">Password Length</label>
 
-                            <input type="number" id="length" min="1" max="128" value="12"
+                            <input type="number" id="length" name="length" min="1" max="128" value="12"
                                    class="h-12 w-18 text-center dark:text-black/70 bg-white border"
                                    placeholder="Length"/>
 
-                            <input type="range" id="slider" min="1" max="128" value="12"
+                            <input type="range" id="slider" name="slider" min="1" max="128" value="12"
                                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-fuchsia-900"/>
                         </div>
 
@@ -103,25 +103,24 @@
                             </div>
                         </div>
 
-                        <!-- Character Options (Checkboxes) -->
                         <div class="mt-4 grid grid-cols-2 gap-2 dark:text-black/50">
                             <label class="flex items-center gap-2">
-                                <input type="checkbox" checked class="form-checkbox dark:text-black/50 focus:ring-0"/>
+                                <input id="uppercase" name="uppercase" value="true" type="checkbox" checked class="form-checkbox dark:text-black/50 focus:ring-0"/>
                                 <span>Uppercase</span>
                             </label>
 
                             <label class="flex items-center gap-2 dark:text-black/50">
-                                <input type="checkbox" checked class="form-checkbox dark:text-black/50 focus:ring-0"/>
+                                <input id="lowercase" name="lowercase" value="true" type="checkbox" checked class="form-checkbox dark:text-black/50 focus:ring-0"/>
                                 <span>Lowercase</span>
                             </label>
 
                             <label class="flex items-center gap-2">
-                                <input type="checkbox" checked class="form-checkbox dark:text-black/50 focus:ring-0"/>
+                                <input id="numbers" name="numbers" value="true" type="checkbox" checked class="form-checkbox dark:text-black/50 focus:ring-0"/>
                                 <span>Numbers</span>
                             </label>
 
                             <label class="flex items-center gap-2">
-                                <input type="checkbox" checked class="form-checkbox dark:text-black/50 focus:ring-0"/>
+                                <input id="symbols" name="symbols" value="true" type="checkbox" checked class="form-checkbox dark:text-black/50 focus:ring-0"/>
                                 <span>Symbols</span>
                             </label>
                         </div>
@@ -143,9 +142,16 @@
         e.preventDefault();
 
         const length = document.getElementById('length').value;
-        const includeSymbols = !!document.querySelector('input[type="checkbox"]:checked');
+        const includeUppercase = document.getElementById('uppercase').checked;
+        const includeLowercase = document.getElementById('lowercase').checked;
+        const includeNumbers = document.getElementById('numbers').checked;
+        const includeSymbols = document.getElementById('symbols').checked;
 
-        fetch(`/password/generate?length=${length}&includeSymbols=${includeSymbols}`)
+        alert(
+            length + ' ' + includeUppercase + ' ' + includeLowercase + ' ' + includeNumbers + ' ' + includeSymbols
+        )
+
+        fetch(`/password/generate?length=${length}&uppercase=${includeUppercase}&lowercase=${includeLowercase}&numbers=${includeNumbers}&symbols=${includeSymbols}`)
             .then(response => response.text())
             .then(password => {
                 const passwordInput = document.getElementById('password');

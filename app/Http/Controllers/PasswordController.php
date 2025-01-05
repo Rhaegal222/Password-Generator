@@ -3,23 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Services\PasswordService;
-use Illuminate\Http\Request;
+use App\Http\Requests\GeneratePasswordRequest;
 
 class PasswordController extends Controller
 {
-    protected $passwordService;
+    protected PasswordService $passwordService;
 
     public function __construct(PasswordService $passwordService)
     {
         $this->passwordService = $passwordService;
     }
 
-    public function generate(Request $request)
+    public function generate(GeneratePasswordRequest $request)
     {
-        $length = $request->input('length', 12);
-        $includeSymbols = $request->input('includeSymbols', true);
+        $length = $request->validated()['length'];
+        $includeUppercase = $request->validated()['uppercase'] ?? false;
+        $includeLowercase = $request->validated()['lowercase'] ?? false;
+        $includeNumbers = $request->validated()['numbers'] ?? false;
+        $includeSymbols = $request->validated()['symbols'] ?? false;
 
-        $password = $this->passwordService->generate($length, $includeSymbols);
+        $password = $this->passwordService->generate($length, $includeUppercase, $includeLowercase, $includeNumbers, $includeSymbols);
 
         return response($password, 200)
             ->header('Content-Type', 'text/plain');
