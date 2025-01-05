@@ -28,11 +28,13 @@ RUN composer install --no-dev --optimize-autoloader
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Copia lo script di avvio nel container
+# Copia gli script di entrypoint e attesa
 COPY entrypoint.sh /entrypoint.sh
+
+# Rendi eseguibili gli script
 RUN chmod +x /entrypoint.sh
 
-# Definisce l'entrypoint del container
+# Usa entrypoint.sh come punto di ingresso
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Espone la porta per PHP-FPM
