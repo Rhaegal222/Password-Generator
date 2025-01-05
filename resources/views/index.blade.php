@@ -176,10 +176,7 @@
 
         function updateRadioButtons() {
             const states = ['uppercase', 'lowercase', 'numbers', 'symbols'].map(id => document.getElementById(id).checked);
-            const [uppercase, lowercase, numbers, symbols] = states;
             const allCharacters = document.getElementById('all-characters');
-            const easySay = document.getElementById('easy-say');
-            const easyRead = document.getElementById('easy-read');
 
             const allChecked = states.every(state => state);
 
