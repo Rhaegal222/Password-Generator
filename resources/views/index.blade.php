@@ -171,16 +171,6 @@
                     checkbox.disabled = config.disabled?.includes(key) || false;
                 }
             });
-            updateRadioButtons();
-        }
-
-        function updateRadioButtons() {
-            const states = ['uppercase', 'lowercase', 'numbers', 'symbols'].map(id => document.getElementById(id).checked);
-            const allCharacters = document.getElementById('all-characters');
-
-            const allChecked = states.every(state => state);
-
-            allCharacters.checked = !!allChecked;
         }
 
         document.querySelectorAll('input[type="radio"]').forEach(radio => {
@@ -251,7 +241,6 @@
             });
         };
 
-        // Gestione generazione password
         document.getElementById('generate').onclick = function (e) {
             e.preventDefault();
 
