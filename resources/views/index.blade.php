@@ -27,7 +27,7 @@
     <div class="flex w-full min-h-screen flex-col items-center justify-center selection:bg-[#BE167A] selection:text-white">
         <div class="relative w-full lg:max-w-7xl">
             <header class="flex justify-center gap-2 py-10">
-                <div class="flex">
+                <div class="flex select-none">
                     <svg width="100" height="100" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="lockGradient" x1="100%" y1="0%" x2="0%" y2="100%">
@@ -36,13 +36,10 @@
                             </linearGradient>
                         </defs>
 
-                        <!-- Corpo del Lucchetto -->
                         <rect x="4" y="8" width="16" height="14" rx="3" ry="3" fill="url(#lockGradient)"/>
 
-                        <!-- Foro della Serratura -->
                         <rect x="11" y="13" width="2" height="5" rx="1" fill="#000"/>
 
-                        <!-- Parte Superiore (Curva) -->
                         <path d="M16 8V6a4 4 0 0 0-8 0v2H6V6a6 6 0 0 1 12 0v2h-2Z" fill="url(#lockGradient)"/>
                     </svg>
 
@@ -55,7 +52,7 @@
                 </div>
             </header>
 
-            <main class="flex items-center justify-center">
+            <main class="flex items-center justify-center select-none">
                 <div class="w-full flex flex-col items-center justify-center">
 
                     <div class="relative w-2/5">
@@ -75,7 +72,7 @@
                             <label for="length" class="text-lg font-bold text-gradient whitespace-nowrap">Password Length</label>
 
                             <input type="number" id="length" min="1" max="128" value="12"
-                                   class="h-12 w-16 p-4 text-center dark:text-black/50 bg-white rounded-lg border"
+                                   class="h-12 w-16 p-4 text-center dark:text-black/50 bg-white border"
                                    placeholder="Length"/>
 
                             <input type="range" id="slider" min="1" max="128" value="12"
@@ -131,7 +128,8 @@
                     </div>
 
                     <button id="generate"
-                            class="mt-4 w-1/5 px-6 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#BE167A] to-[#7873F5] rounded-lg">
+                            class="mt-4 w-1/5 px-6 py-3 text-lg font-bold text-white button
+                             rounded-lg">
                         Generate
                     </button>
                 </div>

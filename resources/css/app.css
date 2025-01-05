@@ -2,4 +2,181 @@
 @tailwind components;
 @tailwind utilities;
 
-.text-gradient{background-clip:text;-webkit-background-clip:text;color:transparent;background-image:linear-gradient(to right, #BE167A 0%, #7873F5 100%);-webkit-text-fill-color:transparent;user-select: none;}
+.text-gradient{
+    background-color: transparent;
+    background-image: linear-gradient(to right, #BE167A, #7873F5, #BE167A);
+    background-origin: border-box;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color:transparent;
+    background-size: 300% auto;
+    transition: background-image 0.3s ease;
+    animation: slide 3s linear infinite;
+}
+
+.select-none{user-select: none;}
+
+button {
+    background-color: transparent;
+    border-radius: 0.5rem;
+    padding: 10px 20px;
+    outline: none;
+    border: 0.15rem solid transparent;
+    background-image: linear-gradient(to right, #BE167A, #7873F5, #BE167A);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: background-image 0.3s ease;
+    background-size: 300% auto;
+    animation: slide 2.2s linear infinite;
+}
+
+button:hover {
+    background-size: 100% auto;
+    animation: button-rotation 0.6s linear infinite;
+}
+
+@keyframes slide {
+    0% {
+        background-position: 300% 150%;
+    }
+    100% {
+        background-position: 0 150%;
+    }
+}
+
+@keyframes button-rotation {
+    0% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 0deg, #BE167A, #7873F5, #BE167A);
+    }
+    8.33% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 30deg, #BE167A, #7873F5, #BE167A);
+    }
+    16.66% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 60deg, #BE167A, #7873F5, #BE167A);
+    }
+    25% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 90deg, #BE167A, #7873F5, #BE167A);
+    }
+    33.33% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 120deg, #BE167A, #7873F5, #BE167A);
+    }
+    41.66% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 150deg, #BE167A, #7873F5, #BE167A);
+    }
+    50% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 180deg, #BE167A, #7873F5, #BE167A);
+    }
+    58.33% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 210deg, #BE167A, #7873F5, #BE167A);
+    }
+    66.66% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 240deg, #BE167A, #7873F5, #BE167A);
+    }
+    75% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 270deg, #BE167A, #7873F5, #BE167A);
+    }
+    83.33% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 300deg, #BE167A, #7873F5, #BE167A);
+    }
+    91.66% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 330deg, #BE167A, #7873F5, #BE167A);
+    }
+    100% {
+        background-image: linear-gradient(transparent, transparent),
+        conic-gradient(from 360deg, #BE167A, #7873F5, #BE167A);
+    }
+}
+
+
+.border {
+    position: relative;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 10px;
+    outline: none;
+    border: 0.15rem solid transparent;
+    background-image: linear-gradient(white, white),
+    linear-gradient(to right, #BE167A, #7873F5);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: background-image 0.3s ease;
+}
+
+/* Focus con animazione del gradiente */
+.border:focus {
+    border: 0.15rem solid transparent;
+    background-image: linear-gradient(white, white),
+    conic-gradient(from 0deg, #BE167A, #7873F5, #BE167A);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    animation: border-animation 0.6s linear infinite;
+}
+
+@keyframes border-animation {
+    0% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 0deg, #BE167A, #7873F5, #BE167A);
+    }
+    8.33% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 30deg, #BE167A, #7873F5, #BE167A);
+    }
+    16.66% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 60deg, #BE167A, #7873F5, #BE167A);
+    }
+    25% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 90deg, #BE167A, #7873F5, #BE167A);
+    }
+    33.33% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 120deg, #BE167A, #7873F5, #BE167A);
+    }
+    41.66% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 150deg, #BE167A, #7873F5, #BE167A);
+    }
+    50% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 180deg, #BE167A, #7873F5, #BE167A);
+    }
+    58.33% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 210deg, #BE167A, #7873F5, #BE167A);
+    }
+    66.66% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 240deg, #BE167A, #7873F5, #BE167A);
+    }
+    75% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 270deg, #BE167A, #7873F5, #BE167A);
+    }
+    83.33% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 300deg, #BE167A, #7873F5, #BE167A);
+    }
+    91.66% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 330deg, #BE167A, #7873F5, #BE167A);
+    }
+    100% {
+        background-image: linear-gradient(white, white),
+        conic-gradient(from 360deg, #BE167A, #7873F5, #BE167A);
+    }
+}
+
+
