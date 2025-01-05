@@ -18,10 +18,9 @@
 
 button {
     background-color: transparent;
-    border-radius: 0.5rem;
+    border-radius: 0.65rem;
     padding: 10px 20px;
     outline: none;
-    border: 0.15rem solid transparent;
     background-image: linear-gradient(to right, #BE167A, #7873F5, #BE167A);
     background-origin: border-box;
     background-clip: padding-box, border-box;
@@ -102,7 +101,7 @@ button:hover {
 .border {
     position: relative;
     background-color: white;
-    border-radius: 0.5rem;
+    border-radius: 0.65rem;
     outline: none;
     border: 0.15rem solid transparent;
     background-image: linear-gradient(white, white),
@@ -110,16 +109,16 @@ button:hover {
     background-origin: border-box;
     background-clip: padding-box, border-box;
     transition: background-image 0.3s ease;
+    animation: border-animation 0.8s linear infinite;
 }
 
-/* Focus con animazione del gradiente */
 .border:focus {
     border: 0.15rem solid transparent;
     background-image: linear-gradient(white, white),
     conic-gradient(from 0deg, #BE167A, #7873F5, #BE167A);
     background-origin: border-box;
     background-clip: padding-box, border-box;
-    animation: border-animation 0.6s linear infinite;
+    animation: border-animation 6s linear infinite;;
 }
 
 @keyframes border-animation {

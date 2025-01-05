@@ -4,9 +4,15 @@ namespace App\Services;
 
 class PasswordService
 {
-    public function generatePassword($length = 12)
+    public function generate($length = 12, $includeSymbols = true): string
     {
-        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
-        return substr(str_shuffle(str_repeat($chars, $length)), 0, $length);
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+        if ($includeSymbols) {
+            $characters .= $symbols;
+        }
+
+        return substr(str_shuffle(str_repeat($characters, $length)), 0, $length);
     }
 }

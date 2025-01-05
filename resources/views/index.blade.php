@@ -65,7 +65,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 flex flex-col w-2/5 p-4 bg-white rounded-lg shadow-md">
+                    <div class="mt-4 flex flex-col w-2/5 p-4 bg-white shadow-md border">
                         <h2 class="text-2xl font-bold text-gradient">Customize your password</h2>
 
                         <div class="flex flex-row items-center justify-evenly gap-4 mt-4">
@@ -137,5 +137,35 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('generate').onclick = function(e) {
+        e.preventDefault();
+
+        const length = document.getElementById('length').value;
+        const includeSymbols = !!document.querySelector('input[type="checkbox"]:checked');
+
+        fetch(`/password/generate?length=${length}&includeSymbols=${includeSymbols}`)
+            .then(response => response.text())
+            .then(password => {
+                const passwordInput = document.getElementById('password');
+                passwordInput.value = password;
+                navigator.clipboard.writeText(password).then(() => {
+                    alert('Password copiata nella clipboard!');
+                });
+            })
+            .catch(error => {
+                alert('Errore nella generazione della password');
+            });
+    }
+
+    document.getElementById('slider').oninput = function () {
+        document.getElementById('length').value = this.value;
+    }
+
+    document.getElementById('length').oninput = function () {
+        document.getElementById('slider').value = this.value;
+    }
+</script>
 </body>
 </html>
