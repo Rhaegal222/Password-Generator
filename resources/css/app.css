@@ -99,12 +99,10 @@ button:hover {
     }
 }
 
-
 .border {
     position: relative;
     background-color: white;
     border-radius: 0.5rem;
-    padding: 10px;
     outline: none;
     border: 0.15rem solid transparent;
     background-image: linear-gradient(white, white),

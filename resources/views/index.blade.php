@@ -57,7 +57,7 @@
 
                     <div class="relative w-2/5">
                         <input type="text" id="password"
-                               class="h-12 w-full p-4 pr-12 dark:text-black/50 bg-white rounded-lg border"
+                               class="h-12 w-full p-4 pr-12 dark:text-black/70 bg-white rounded-lg border"
                                placeholder="Generated Password"/>
 
                         <div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
@@ -72,7 +72,7 @@
                             <label for="length" class="text-lg font-bold text-gradient whitespace-nowrap">Password Length</label>
 
                             <input type="number" id="length" min="1" max="128" value="12"
-                                   class="h-12 w-16 p-4 text-center dark:text-black/50 bg-white border"
+                                   class="h-12 w-18 text-center dark:text-black/70 bg-white border"
                                    placeholder="Length"/>
 
                             <input type="range" id="slider" min="1" max="128" value="12"
