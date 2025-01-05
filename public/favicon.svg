@@ -1,0 +1,14 @@
+<svg width="200" height="200" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="lockGradient" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#BE167A"/>
+            <stop offset="100%" stop-color="#7873F5"/>
+        </linearGradient>
+    </defs>
+
+    <path d="M16 12V6a4 4 0 0 0-8 0v6H6V6a6 6 1 1 1 12 0v6h-2Z" fill="url(#lockGradient)"/>
+
+    <rect x="4" y="8" width="16" height="14" rx="3" ry="3" fill="url(#lockGradient)"/>
+
+    <rect x="11" y="13" width="2" height="5" rx="1" fill="#000"/>
+</svg>

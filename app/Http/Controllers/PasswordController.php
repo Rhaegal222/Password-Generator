@@ -21,8 +21,10 @@ class PasswordController extends Controller
         $includeLowercase = $request->validated()['lowercase'] ?? false;
         $includeNumbers = $request->validated()['numbers'] ?? false;
         $includeSymbols = $request->validated()['symbols'] ?? false;
+        $easyToSay = $request->validated()['easyToSay'] ?? false;
+        $easyToRead = $request->validated()['easyToRead'] ?? false;
 
-        $password = $this->passwordService->generate($length, $includeUppercase, $includeLowercase, $includeNumbers, $includeSymbols);
+        $password = $this->passwordService->generate($length, $includeUppercase, $includeLowercase, $includeNumbers, $includeSymbols, $easyToSay, $easyToRead);
 
         return response($password, 200)
             ->header('Content-Type', 'text/plain');

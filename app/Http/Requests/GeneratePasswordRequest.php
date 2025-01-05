@@ -20,6 +20,9 @@ class GeneratePasswordRequest extends FormRequest
             'lowercase' => 'sometimes|boolean',
             'numbers' => 'sometimes|boolean',
             'symbols' => 'sometimes|boolean',
+            'easyToSay' => 'sometimes|boolean',
+            'easyToRead' => 'sometimes|boolean',
+            'allCharacters' => 'sometimes|boolean'
         ];
     }
 
@@ -30,6 +33,9 @@ class GeneratePasswordRequest extends FormRequest
             'lowercase' => $this->boolean('lowercase', true),
             'numbers' => $this->boolean('numbers', true),
             'symbols' => $this->boolean('symbols', true),
+            'easyToSay' => $this->boolean('easyToSay', true),
+            'easyToRead' => $this->boolean('easyToRead', true),
+            'allCharacters' => $this->boolean('allCharacters', true),
         ]);
     }
 }
