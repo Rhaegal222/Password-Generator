@@ -9,6 +9,16 @@
 .env
 .env.backup
 .env.production
+service/.env
+service/.env.backup
+service/.env.production
+service/node_modules
+service/public/build
+service/public/hot
+service/public/storage
+service/storage/*.key
+service/storage/pail
+service/vendor
 .phpactor.json
 .phpunit.result.cache
 Homestead.json
