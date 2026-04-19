@@ -4,15 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasswordsTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
         Schema::create('passwords', function (Blueprint $table) {
             $table->id();
-            $table->string('name');  // Nome per identificare la password (es. "Account Gmail")
-            $table->string('password');  // La password generata
-            $table->timestamps();  // Campi created_at e updated_at
+            $table->string('value', 128);
+            $table->unsignedTinyInteger('length');
+            $table->json('options');
+            $table->timestamps();
         });
     }
 
@@ -20,5 +21,4 @@ class CreatePasswordsTable extends Migration
     {
         Schema::dropIfExists('passwords');
     }
-}
-
+};

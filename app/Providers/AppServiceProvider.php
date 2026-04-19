@@ -2,23 +2,16 @@
 
 namespace App\Providers;
 
+use App\Repositories\EloquentPasswordRepository;
+use App\Repositories\PasswordRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
-        //
+        $this->app->bind(PasswordRepositoryInterface::class, EloquentPasswordRepository::class);
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        //
-    }
+    public function boot(): void {}
 }

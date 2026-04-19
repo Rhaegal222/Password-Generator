@@ -2,31 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\PasswordService;
+use App\DTO\PasswordOptions;
 use App\Http\Requests\GeneratePasswordRequest;
+use App\Services\PasswordService;
+use Illuminate\Http\Response;
 
 class PasswordController extends Controller
 {
-    protected PasswordService $passwordService;
+    public function __construct(private readonly PasswordService $passwordService) {}
 
-    public function __construct(PasswordService $passwordService)
+    public function generate(GeneratePasswordRequest $request): Response
     {
-        $this->passwordService = $passwordService;
-    }
+        $result = $this->passwordService->generate(
+            PasswordOptions::fromRequest($request)
+        );
 
-    public function generate(GeneratePasswordRequest $request)
-    {
-        $length = $request->validated()['length'];
-        $includeUppercase = $request->validated()['uppercase'] ?? false;
-        $includeLowercase = $request->validated()['lowercase'] ?? false;
-        $includeNumbers = $request->validated()['numbers'] ?? false;
-        $includeSymbols = $request->validated()['symbols'] ?? false;
-        $easyToSay = $request->validated()['easyToSay'] ?? false;
-        $easyToRead = $request->validated()['easyToRead'] ?? false;
-
-        $password = $this->passwordService->generate($length, $includeUppercase, $includeLowercase, $includeNumbers, $includeSymbols, $easyToSay, $easyToRead);
-
-        return response($password, 200)
-            ->header('Content-Type', 'text/plain');
+        return $result->success
+            ? response($result->data, 200)->header('Content-Type', 'text/plain')
+            : response($result->error, 422)->header('Content-Type', 'text/plain');
     }
 }
