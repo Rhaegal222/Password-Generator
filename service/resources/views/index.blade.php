@@ -54,7 +54,7 @@
                            class="h-12 w-full p-4 pr-12 bg-white rounded-lg border"
                            placeholder="Generated Password">
                     <button id="copy" class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
-                        <i class="material-icons text-gradient">content_copy</i>
+                        <i class="material-icons text-white">content_copy</i>
                     </button>
                 </div>
 

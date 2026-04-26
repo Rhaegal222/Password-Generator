@@ -1,7 +1,7 @@
 services:
     app:
         volumes:
-            - .:/var/www/html
+            - ./service:/var/www/html
             - /var/www/html/vendor
 
     nginx:
@@ -9,4 +9,4 @@ services:
             - "8098:80"
         volumes:
             - ./nginx/internal.conf:/etc/nginx/conf.d/default.conf:ro
-            - .:/var/www/html
+            - ./service/public:/var/www/html/public:ro
