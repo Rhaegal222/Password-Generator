@@ -44,9 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Generate
-    generateBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-
+    async function generatePassword() {
         const length = parseInt(lengthInput.value, 10);
         if (isNaN(length) || length < 6 || length > 128) {
             alert('Password length must be between 6 and 128 characters.');
@@ -75,11 +73,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             passwordInput.value = text;
-            copyToClipboard(text);
         } catch {
             alert('Error generating password. Please try again.');
         }
+    }
+
+    generateBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        generatePassword();
     });
+
+    // Initial generate
+    generatePassword();
 
     // Copy
     copyBtn.addEventListener('click', () => {
