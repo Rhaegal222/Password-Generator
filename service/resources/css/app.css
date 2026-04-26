@@ -185,10 +185,10 @@ button:hover {
 .tooltip .tooltip-text {
     width: auto;
     min-width: 150px;
-    padding: 0.25rem;
-    color: black;
+    padding: 0.35rem 0.6rem;
+    color: #f0f0f0;
     font-size: 0.8rem;
-    background-color: #555;
+    background-color: #1a1a2e;
     text-align: center;
     border-radius: 6px;
     position: absolute;
@@ -204,3 +204,14 @@ button:hover {
     visibility: visible;
     opacity: 1;
 }
+
+/* ── A11y: focus ring WCAG AA ────────────────────────────────────── */
+/* outline:none on button base requires explicit focus-visible override */
+button:focus-visible,
+input:focus-visible,
+.border:focus-visible {
+    outline: 2px solid var(--wr-color-accent-primary, #2c9fd6);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) { outline: none; }
