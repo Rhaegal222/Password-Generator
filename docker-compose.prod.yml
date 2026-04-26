@@ -1,4 +1,0 @@
-services:
-    nginx:
-        ports:
-            - "8096:80"
