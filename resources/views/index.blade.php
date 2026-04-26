@@ -21,7 +21,7 @@
      src="https://4kwallpapers.com/images/wallpapers/neon-circles-hi-tech-dark-background-loop-5k-8k-7680x4320-8312.png"
      alt="">
 
-<div class="flex w-full min-h-screen flex-col items-center justify-center selection:bg-[#BE167A] selection:text-white">
+<div class="flex w-full min-h-screen flex-col items-center justify-center">
     <div class="relative w-full lg:max-w-7xl">
 
         <header class="flex justify-center gap-2 py-10">
@@ -38,8 +38,7 @@
                     <rect x="11" y="13" width="2" height="5" rx="1" fill="#000"/>
                 </svg>
                 <div class="flex flex-col justify-center items-start">
-                    <h1 style="font-size:2rem; font-family:'Allerta Stencil',sans-serif;"
-                        class="text-gradient text-4xl font-bold">
+                    <h1 class="text-gradient text-4xl font-bold">
                         Password<br>Generator
                     </h1>
                 </div>
@@ -52,7 +51,7 @@
                 {{-- Output --}}
                 <div class="relative w-2/5">
                     <input type="text" id="password" disabled
-                           class="h-12 w-full p-4 pr-12 dark:text-black/70 bg-white rounded-lg border"
+                           class="h-12 w-full p-4 pr-12 bg-white rounded-lg border"
                            placeholder="Generated Password">
                     <button id="copy" class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
                         <i class="material-icons text-gradient">content_copy</i>
@@ -67,7 +66,7 @@
                     <div class="flex flex-row items-center justify-evenly gap-4 mt-4">
                         <label for="length" class="text-lg font-bold text-gradient whitespace-nowrap">Password Length</label>
                         <input type="number" id="length" min="6" max="128" value="12"
-                               class="h-12 w-18 text-center dark:text-black/70 bg-white border">
+                               class="h-12 text-center bg-white border">
                         <input type="range" id="slider" min="6" max="128" value="12"
                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-fuchsia-900">
                     </div>
@@ -83,7 +82,7 @@
                             <input type="radio" name="mode" id="mode-{{ $val }}" value="{{ $val }}"
                                    @if($val === 'all') checked @endif
                                    class="form-radio text-gradient focus:ring-0 cursor-pointer">
-                            <label for="mode-{{ $val }}" class="text-base dark:text-black/70">{{ $label }}</label>
+                            <label for="mode-{{ $val }}" class="text-base">{{ $label }}</label>
                             <div class="tooltip">
                                 <i class="material-icons text-gradient cursor-pointer">info</i>
                                 <span class="tooltip-text border">{{ $tip }}</span>
@@ -100,7 +99,7 @@
                             ['numbers',   'Numbers'],
                             ['symbols',   'Symbols'],
                         ] as [$id, $label])
-                        <label class="flex items-center gap-2 dark:text-black/70 cursor-pointer">
+                        <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="{{ $id }}" checked
                                    class="form-checkbox focus:ring-0 cursor-pointer">
                             <span>{{ $label }}</span>
