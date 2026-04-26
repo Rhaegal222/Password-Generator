@@ -1,0 +1,25 @@
+name: Trigger Deploy
+
+on:
+  workflow_run:
+    workflows: [CI]
+    branches: [main, staging]
+    types: [completed]
+
+jobs:
+  dispatch:
+    name: Dispatch deploy a wyrmrest
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
+
+    steps:
+      - uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.WYRMREST_DISPATCH_TOKEN }}
+          repository: Rhaegal222/wyrmrest
+          event-type: deploy-password-generator
+          client-payload: |
+            {
+              "branch": "${{ github.event.workflow_run.head_branch }}",
+              "sha": "${{ github.event.workflow_run.head_sha }}"
+            }
