@@ -1,4 +1,8 @@
 services:
+    db:
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
     nginx:
         labels:
             - traefik.enable=false
