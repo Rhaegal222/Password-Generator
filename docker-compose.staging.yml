@@ -1,8 +1,4 @@
 services:
-    app:
-        depends_on:
-            - db
-
     nginx:
         labels:
             - traefik.enable=false

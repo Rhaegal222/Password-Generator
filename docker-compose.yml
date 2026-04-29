@@ -11,7 +11,8 @@ services:
         networks:
             - internal
         depends_on:
-            - db
+            db:
+                condition: service_healthy
 
     nginx:
         image: nginx:alpine
@@ -48,6 +49,12 @@ services:
             - db_data:/var/lib/mysql
         networks:
             - internal
+        healthcheck:
+            test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u$${MYSQL_USER} -p$${MYSQL_PASSWORD} --silent"]
+            interval: 10s
+            timeout: 5s
+            retries: 12
+            start_period: 30s
 
 networks:
     internal:
