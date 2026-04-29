@@ -27,10 +27,12 @@ services:
         labels:
             - traefik.enable=true
             - traefik.docker.network=proxy
+            - traefik.http.middlewares.password-generator-strip.stripprefix.prefixes=/password-generator
             - traefik.http.routers.password-generator.rule=(Host(`wyrmrest.it`) || Host(`www.wyrmrest.it`) || Host(`wyrmrest.com`) || Host(`www.wyrmrest.com`)) && PathPrefix(`/password-generator`)
             - traefik.http.routers.password-generator.entrypoints=websecure
             - traefik.http.routers.password-generator.tls=true
             - traefik.http.routers.password-generator.priority=100
+            - traefik.http.routers.password-generator.middlewares=password-generator-strip@docker
             - traefik.http.services.password-generator.loadbalancer.server.port=80
         depends_on:
             - app
