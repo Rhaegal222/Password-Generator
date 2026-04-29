@@ -1,7 +1,7 @@
 services:
     app:
         env_file: !override
-            - /home/rhaegal222/Server/system/ops/secrets/password-generator/production.env
+            - ${PASSWORD_GENERATOR_ENV_FILE:?Set PASSWORD_GENERATOR_ENV_FILE to the production env file path}
         depends_on: !reset []
         extra_hosts:
             - "host.docker.internal:host-gateway"

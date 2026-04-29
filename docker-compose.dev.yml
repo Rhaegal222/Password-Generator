@@ -5,8 +5,8 @@ services:
             - /var/www/html/vendor
 
     nginx:
-        ports:
-            - "8098:80"
         volumes:
             - ./nginx/internal.conf:/etc/nginx/conf.d/default.conf:ro
             - ./service/public:/var/www/html/public:ro
+        labels:
+            - traefik.enable=false
