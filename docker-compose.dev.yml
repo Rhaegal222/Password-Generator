@@ -1,9 +1,18 @@
 services:
     db:
         environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_DATABASE: password_generator_000_develop
+            MYSQL_ROOT_PASSWORD: password_generator_root
+            MYSQL_USER: password_generator
+            MYSQL_PASSWORD: password_generator_local
 
     app:
+        environment:
+            DB_HOST: db
+            DB_DATABASE: password_generator_000_develop
+            DB_USERNAME: password_generator
+            DB_PASSWORD: password_generator_local
+            DB_ROOT_PASSWORD: password_generator_root
         volumes:
             - ./service:/var/www/html
             - /var/www/html/vendor
