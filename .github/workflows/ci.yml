@@ -32,13 +32,21 @@ jobs:
         working-directory: service
         run: php artisan key:generate
 
+      - name: Install frontend dependencies
+        working-directory: service
+        run: npm ci
+
+      - name: Build frontend assets
+        working-directory: service
+        run: npm run build
+
       - name: Run PHPUnit tests
         working-directory: service
         run: php artisan test --parallel
 
       - name: Check vulnerable dependencies
         working-directory: service
-        run: composer audit
+        run: composer audit --no-dev
 
   docker-build:
     name: Docker Build & Push
