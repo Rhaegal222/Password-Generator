@@ -23,7 +23,7 @@ ARG VITE_BASE_URL=/password-generator/
 ENV VITE_BASE_URL=${VITE_BASE_URL}
 RUN npm ci && npm run build && rm -rf node_modules
 
-RUN chown -R www-data:www-data storage bootstrap/cache \
+RUN chown -R 1000:1000 storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
 COPY entrypoint.sh /entrypoint.sh

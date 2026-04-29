@@ -1,14 +1,14 @@
 services:
     app:
-        env_file:
+        env_file: !override
             - /home/rhaegal222/Server/system/ops/secrets/password-generator/production.env
-        depends_on: []
+        depends_on: !reset []
         extra_hosts:
             - "host.docker.internal:host-gateway"
 
     nginx:
-        ports:
-            - "8096:80"
+        expose:
+            - "80"
 
     db:
         profiles:
