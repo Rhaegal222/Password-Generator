@@ -37,8 +37,29 @@
 body {
   min-height: 100vh;
   font-family: var(--wr-font-family-ui);
-  background: var(--wr-color-bg-canvas);
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.18), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(59, 130, 246, 0.12), transparent 28%),
+    linear-gradient(180deg, #091018 0%, var(--wr-color-bg-canvas) 45%, #070d14 100%);
   color: var(--wr-color-text-primary);
+}
+
+.pg-shell {
+  min-height: 100vh;
+  padding: var(--wr-space-24) var(--wr-space-16);
+}
+
+.pg-grid {
+  display: grid;
+  gap: var(--wr-space-16);
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .pg-grid {
+    grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+  }
 }
 
 .wr-panel {
@@ -46,7 +67,7 @@ body {
   border-radius: var(--wr-radius-lg);
   background: linear-gradient(135deg, var(--wr-color-bg-elevated), var(--wr-color-bg-surface));
   box-shadow: var(--wr-shadow-2);
-  padding: 1.5rem;
+  padding: var(--wr-space-24);
 }
 
 .wr-eyebrow {
@@ -55,6 +76,136 @@ body {
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
+}
+
+.pg-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wr-space-16);
+  justify-content: space-between;
+}
+
+.pg-hero__top {
+  display: flex;
+  align-items: center;
+  gap: var(--wr-space-16);
+}
+
+.pg-mark {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--wr-color-accent-primary) 40%, transparent);
+  border-radius: var(--wr-radius-lg);
+  background: color-mix(in srgb, var(--wr-color-accent-primary) 16%, var(--wr-color-bg-elevated));
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.pg-title {
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: .06em;
+  line-height: .92;
+  color: var(--wr-color-text-primary);
+}
+
+.pg-copy {
+  color: var(--wr-color-text-secondary);
+  font-size: var(--wr-font-size-18);
+  line-height: var(--wr-line-relaxed);
+  max-width: 34ch;
+}
+
+.pg-badges,
+.pg-output__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wr-space-8);
+}
+
+.pg-badge,
+.pg-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: var(--wr-space-4) var(--wr-space-12);
+  border-radius: var(--wr-radius-full);
+  border: 1px solid var(--wr-color-border-strong);
+  background: var(--wr-color-bg-canvas);
+  color: var(--wr-color-text-secondary);
+  font-size: var(--wr-font-size-12);
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.pg-home {
+  align-self: flex-start;
+}
+
+.pg-workbench {
+  display: grid;
+  gap: var(--wr-space-16);
+}
+
+.pg-output {
+  display: grid;
+  gap: var(--wr-space-12);
+  padding: var(--wr-space-16);
+  border: 1px solid var(--wr-color-border-subtle);
+  border-radius: var(--wr-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--wr-color-accent-primary) 12%, transparent), transparent 36%),
+    var(--wr-color-bg-canvas);
+}
+
+.pg-output__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wr-space-12);
+}
+
+.pg-section-title {
+  color: var(--wr-color-text-primary);
+  font-size: var(--wr-font-size-24);
+  font-weight: 850;
+}
+
+.pg-password {
+  width: 100%;
+  min-height: 64px;
+  border: 1px solid var(--wr-color-border-strong);
+  border-radius: var(--wr-radius-lg);
+  background: var(--wr-color-bg-surface);
+  color: var(--wr-color-accent-hover);
+  font-family: var(--wr-font-family-mono);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: .08em;
+  padding: 0 var(--wr-space-16);
+}
+
+.pg-password::placeholder {
+  color: var(--wr-color-text-disabled);
+}
+
+.pg-controls {
+  display: grid;
+  gap: var(--wr-space-16);
+}
+
+.pg-length {
+  display: grid;
+  gap: var(--wr-space-12);
+}
+
+@media (min-width: 768px) {
+  .pg-length {
+    grid-template-columns: minmax(0, 1fr) 96px;
+  }
 }
 
 .wr-button {
@@ -87,6 +238,12 @@ body {
 
 .wr-button-primary:hover:not(:disabled) {
   background: var(--wr-color-accent-hover);
+}
+
+.pg-generate {
+  min-height: 44px;
+  width: 100%;
+  font-size: var(--wr-font-size-16);
 }
 
 button:disabled {

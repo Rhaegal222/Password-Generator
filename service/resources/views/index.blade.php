@@ -12,50 +12,63 @@
 </head>
 <body class="font-sans antialiased bg-wr-canvas text-wr-text-primary">
 
-<main class="min-h-screen px-wr-16 py-wr-24 lg:py-wr-32">
-    <div class="mx-auto grid w-full max-w-5xl gap-wr-16 lg:grid-cols-[0.9fr_1.1fr]">
-        <header class="wr-panel flex flex-col justify-between gap-wr-24">
-            <div class="flex items-center gap-wr-16">
-                <span class="grid h-16 w-16 place-items-center rounded-wr-lg border border-wr-border-strong bg-wr-elevated text-3xl" aria-hidden="true">🔐</span>
+<main class="pg-shell">
+    <div class="pg-grid">
+        <header class="wr-panel pg-hero">
+            <div class="pg-hero__top">
+                <span class="pg-mark" aria-hidden="true">🔐</span>
                 <div>
                     <p class="wr-eyebrow">Wyrmrest public tool</p>
-                    <h1 class="text-4xl font-black tracking-wide text-wr-text-primary">Password Generator</h1>
+                    <h1 class="pg-title">Password Generator</h1>
                 </div>
             </div>
-            <p class="text-wr-18 leading-relaxed text-wr-text-secondary">Genera password robuste con regole esplicite, senza uscire dal linguaggio visivo Wyrmrest.</p>
-            <a href="/" class="wr-button wr-button-secondary self-start">Torna all'Hub</a>
+            <p class="pg-copy">Generatore operativo con layout a due livelli: brand a sinistra, controlli e output a destra. Nessun look da landing generica.</p>
+            <div class="pg-badges" aria-label="Caratteristiche">
+                <span class="pg-badge">Token Wyrmrest</span>
+                <span class="pg-badge">Dark baseline</span>
+                <span class="pg-badge">Touch 44px</span>
+            </div>
+            <a href="/" class="wr-button wr-button-secondary pg-home">Torna all'Hub</a>
         </header>
 
-        <section class="wr-panel grid gap-wr-16" aria-labelledby="generator-title">
-            <div>
-                <p class="wr-eyebrow">Output</p>
-                <h2 id="generator-title" class="text-2xl font-extrabold text-wr-text-primary">Password pronta all'uso</h2>
-            </div>
-
-            <div class="relative">
-                <label for="password" class="sr-only">Password generata</label>
-                <input type="text" id="password" disabled
-                       class="wr-input h-14 pr-16 font-mono text-wr-16"
-                       placeholder="Password generata">
-                <button id="copy" class="wr-icon-button absolute inset-y-0 right-wr-8 my-auto" aria-label="Copia password">
-                    <span aria-hidden="true">⧉</span>
-                </button>
-            </div>
-
-            <div class="grid gap-wr-16 rounded-wr-lg border border-wr-border-subtle bg-wr-surface p-wr-16">
-                <div class="grid gap-wr-12 md:grid-cols-[minmax(0,1fr)_96px]">
+        <section class="wr-panel pg-workbench" aria-labelledby="generator-title">
+            <div class="pg-output">
+                <div class="pg-output__meta">
                     <div>
-                        <label for="slider" class="wr-label">Lunghezza password</label>
-                        <input type="range" id="slider" min="6" max="128" value="12" class="wr-range">
+                        <p class="wr-eyebrow">Output</p>
+                        <h2 id="generator-title" class="pg-section-title">Password pronta all'uso</h2>
                     </div>
-                    <div>
-                        <label for="length" class="wr-label">Caratteri</label>
-                        <input type="number" id="length" min="6" max="128" value="12" class="wr-input h-11 text-center">
-                    </div>
+                    <button id="copy" class="wr-icon-button" aria-label="Copia password">
+                        <span aria-hidden="true">⧉</span>
+                    </button>
                 </div>
 
-                <fieldset class="grid gap-wr-8">
-                    <legend class="wr-label">Modalità</legend>
+                <label for="password" class="sr-only">Password generata</label>
+                <input type="text" id="password" disabled
+                       class="pg-password"
+                       placeholder="Password generata">
+                <div class="pg-output__chips">
+                    <span class="pg-chip">Monospace</span>
+                    <span class="pg-chip">Copia rapida</span>
+                    <span class="pg-chip">No scroll orizzontale</span>
+                </div>
+            </div>
+
+            <div class="pg-controls">
+                <div class="grid gap-wr-16 rounded-wr-lg border border-wr-border-subtle bg-wr-surface p-wr-16">
+                    <div class="pg-length">
+                        <div>
+                            <label for="slider" class="wr-label">Lunghezza password</label>
+                            <input type="range" id="slider" min="6" max="128" value="12" class="wr-range">
+                        </div>
+                        <div>
+                            <label for="length" class="wr-label">Caratteri</label>
+                            <input type="number" id="length" min="6" max="128" value="12" class="wr-input h-11 text-center">
+                        </div>
+                    </div>
+
+                    <fieldset class="grid gap-wr-8">
+                        <legend class="wr-label">Modalità</legend>
                     @foreach([
                         ['easy-say',  'Facile da pronunciare', 'Evita numeri e caratteri speciali'],
                         ['easy-read', 'Facile da leggere', 'Evita caratteri ambigui: l, I, 1, O, 0'],
@@ -70,29 +83,30 @@
                         </span>
                     </label>
                     @endforeach
-                </fieldset>
+                    </fieldset>
 
-                <fieldset class="grid gap-wr-8">
-                    <legend class="wr-label">Set caratteri</legend>
-                    <div class="grid gap-wr-8 sm:grid-cols-2">
-                        @foreach([
-                            ['uppercase', 'Maiuscole'],
-                            ['lowercase', 'Minuscole'],
-                            ['numbers', 'Numeri'],
-                            ['symbols', 'Simboli'],
-                        ] as [$id, $label])
-                        <label class="wr-choice">
-                            <input type="checkbox" id="{{ $id }}" checked>
-                            <span>{{ $label }}</span>
-                        </label>
-                        @endforeach
-                    </div>
-                </fieldset>
+                    <fieldset class="grid gap-wr-8">
+                        <legend class="wr-label">Set caratteri</legend>
+                        <div class="grid gap-wr-8 sm:grid-cols-2">
+                            @foreach([
+                                ['uppercase', 'Maiuscole'],
+                                ['lowercase', 'Minuscole'],
+                                ['numbers', 'Numeri'],
+                                ['symbols', 'Simboli'],
+                            ] as [$id, $label])
+                            <label class="wr-choice">
+                                <input type="checkbox" id="{{ $id }}" checked>
+                                <span>{{ $label }}</span>
+                            </label>
+                            @endforeach
+                        </div>
+                    </fieldset>
+                </div>
+
+                <button id="generate" class="wr-button wr-button-primary pg-generate">
+                    Genera password
+                </button>
             </div>
-
-            <button id="generate" class="wr-button wr-button-primary min-h-[44px] w-full text-wr-16">
-                Genera password
-            </button>
         </section>
     </div>
 </main>
