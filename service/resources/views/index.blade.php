@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="it" data-wr-theme="default-dark">
+@php
+    $basePath = rtrim(config('app.base_path', ''), '/');
+    $manifestPath = public_path('build/manifest.json');
+    $manifest = is_file($manifestPath) ? json_decode(file_get_contents($manifestPath), true) : [];
+    $cssEntry = $manifest['resources/css/app.css']['file'] ?? null;
+    $jsEntry = $manifest['resources/js/app.js']['file'] ?? null;
+    $assetPath = static fn (?string $path) => $path ? ($basePath . '/build/' . ltrim($path, '/')) : null;
+@endphp
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="base-path" content="{{ rtrim(config('app.base_path', ''), '/') }}">
+    <meta name="base-path" content="{{ $basePath }}">
 
     <title>Password Generator · Wyrmrest</title>
 
-    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="icon" href="{{ $basePath }}/favicon.svg" type="image/svg+xml">
+    @if($cssEntry)
+        <link rel="stylesheet" href="{{ $assetPath($cssEntry) }}">
+    @endif
+    @if($jsEntry)
+        <script type="module" src="{{ $assetPath($jsEntry) }}"></script>
+    @endif
 </head>
 <body class="font-sans antialiased bg-wr-canvas text-wr-text-primary">
 
