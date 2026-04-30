@@ -3,5 +3,9 @@
     "icon": "🔐",
     "url": "/password-generator",
     "description": "Secure password generator with configurable character sets and cryptographic randomness",
-    "badge": "live"
+    "badge": "live",
+    "audience": "public",
+    "category": "security",
+    "auth_required": false,
+    "listed": true
 }
