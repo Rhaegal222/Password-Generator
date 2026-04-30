@@ -6,14 +6,25 @@
   --wr-color-bg-canvas: #0b1118;
   --wr-color-bg-surface: #121a24;
   --wr-color-bg-elevated: #17212d;
+  --wr-color-border-subtle: #233142;
   --wr-color-border-strong: #2d4157;
   --wr-color-text-primary: #e6edf5;
   --wr-color-text-secondary: #a9b7c7;
   --wr-color-text-disabled: #6e7c8d;
-  --wr-color-accent-primary: #2c9fd6;
-  --wr-color-accent-hover: #36b8ff;
+  --wr-color-accent-primary: #f97316;
+  --wr-color-accent-hover: #fb923c;
+  --wr-color-text-on-accent: #111827;
   --wr-color-danger: #c85151;
+  --wr-font-family-ui: "Inter", "Segoe UI", system-ui, sans-serif;
+  --wr-font-family-mono: "JetBrains Mono", "Fira Mono", "Consolas", monospace;
+  --wr-font-size-12: 0.75rem;
+  --wr-font-size-14: 0.875rem;
+  --wr-font-size-16: 1rem;
+  --wr-font-size-18: 1.125rem;
+  --wr-line-normal: 1.5;
+  --wr-line-relaxed: 1.65;
   --wr-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --wr-radius-lg: 12px;
   --wr-radius-md: 8px;
   --wr-motion-fast: 120ms;
   --wr-motion-base: 180ms;
@@ -24,38 +35,58 @@
 }
 
 body {
-  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-  background: radial-gradient(circle at top, #132030 0%, var(--wr-color-bg-canvas) 60%);
+  min-height: 100vh;
+  font-family: var(--wr-font-family-ui);
+  background: var(--wr-color-bg-canvas);
   color: var(--wr-color-text-primary);
 }
 
-#background {
-  display: none;
-}
-
-.text-gradient {
-  color: var(--wr-color-accent-primary);
-  background: none;
-  -webkit-background-clip: border-box;
-}
-
-button {
-  border-radius: var(--wr-radius-md);
+.wr-panel {
   border: 1px solid var(--wr-color-border-strong);
-  background: var(--wr-color-accent-primary);
-  color: #08131d;
-  font-weight: 700;
-  transition: background-color var(--wr-motion-fast), transform var(--wr-motion-fast), opacity var(--wr-motion-fast);
-  animation: none;
+  border-radius: var(--wr-radius-lg);
+  background: linear-gradient(135deg, var(--wr-color-bg-elevated), var(--wr-color-bg-surface));
+  box-shadow: var(--wr-shadow-2);
+  padding: 1.5rem;
 }
 
-button:hover {
-  background: var(--wr-color-accent-hover);
+.wr-eyebrow {
+  color: var(--wr-color-accent-primary);
+  font-size: var(--wr-font-size-12);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.wr-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--wr-color-border-strong);
+  border-radius: var(--wr-radius-md);
+  padding: .75rem 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background-color var(--wr-motion-base), border-color var(--wr-motion-base), transform var(--wr-motion-fast), opacity var(--wr-motion-fast);
+}
+
+.wr-button-primary {
+  background: var(--wr-color-accent-primary);
+  border-color: var(--wr-color-accent-primary);
+  color: var(--wr-color-text-on-accent);
+}
+
+.wr-button-secondary {
+  background: var(--wr-color-bg-elevated);
+  color: var(--wr-color-text-primary);
+}
+
+.wr-button:hover:not(:disabled) {
+  border-color: var(--wr-color-accent-primary);
   transform: translateY(-1px);
 }
 
-button:active {
-  transform: translateY(0);
+.wr-button-primary:hover:not(:disabled) {
+  background: var(--wr-color-accent-hover);
 }
 
 button:disabled {
@@ -63,46 +94,47 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.border,
-.bg-white {
-  background: var(--wr-color-bg-surface) !important;
-  border-color: var(--wr-color-border-strong) !important;
-  box-shadow: var(--wr-shadow-2);
-}
-
-#password,
-#length,
-#slider,
-input[type="text"],
-input[type="number"] {
-  color: var(--wr-color-text-primary) !important;
-  background: var(--wr-color-bg-elevated) !important;
-  border: 1px solid var(--wr-color-border-strong) !important;
-}
-
-#length {
-  width: 90px;
-}
-
-#slider {
-  accent-color: var(--wr-color-accent-primary);
-}
-
-label,
-span,
-h1,
-h2 {
-  color: var(--wr-color-text-primary) !important;
-}
-
-.dark\:text-black\/70,
-.text-base,
-.text-lg {
-  color: var(--wr-color-text-secondary) !important;
-}
-
-.material-icons {
+.wr-icon-button {
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: var(--wr-radius-md);
   color: var(--wr-color-accent-primary);
+}
+
+.wr-icon-button:hover {
+  background: var(--wr-color-bg-surface);
+  border-color: var(--wr-color-border-strong);
+}
+
+.wr-label {
+  display: block;
+  margin-bottom: .5rem;
+  color: var(--wr-color-text-secondary);
+  font-size: var(--wr-font-size-14);
+  font-weight: 700;
+}
+
+.wr-input {
+  width: 100%;
+  border: 1px solid var(--wr-color-border-strong);
+  border-radius: var(--wr-radius-md);
+  background: var(--wr-color-bg-canvas);
+  color: var(--wr-color-text-primary);
+  padding: 0 .75rem;
+}
+
+.wr-input:disabled {
+  opacity: 1;
+  cursor: text;
+}
+
+.wr-range {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--wr-color-accent-primary);
 }
 
 .tooltip {
@@ -130,26 +162,42 @@ h2 {
   z-index: 20;
 }
 
-.tooltip:hover .tooltip-text {
+.tooltip:hover .tooltip-text,
+.tooltip:focus-within .tooltip-text {
   visibility: visible;
   opacity: 1;
-}
-
-#copy {
-  width: 44px;
-  border: none;
-  background: transparent;
-  color: var(--wr-color-accent-primary);
-  box-shadow: none;
-}
-
-#generate {
-  width: 40%;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
   accent-color: var(--wr-color-accent-primary);
+  min-width: 18px;
+  min-height: 18px;
+}
+
+.wr-choice {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  border: 1px solid var(--wr-color-border-subtle);
+  border-radius: var(--wr-radius-md);
+  background: var(--wr-color-bg-canvas);
+  color: var(--wr-color-text-secondary);
+  padding: .5rem .75rem;
+  cursor: pointer;
+}
+
+.wr-info {
+  width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--wr-color-border-strong);
+  border-radius: 9999px;
+  color: var(--wr-color-accent-primary);
+  font-size: var(--wr-font-size-12);
+  font-weight: 800;
 }
 
 :focus-visible {
@@ -162,8 +210,7 @@ input[type="radio"] {
 }
 
 @media (max-width: 1024px) {
-  #generate,
-  .w-2\/5 {
-    width: 85% !important;
+  .wr-panel {
+    padding: 1rem;
   }
 }

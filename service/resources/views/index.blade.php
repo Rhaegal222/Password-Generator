@@ -1,122 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it" data-wr-theme="default-dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="base-path" content="{{ rtrim(config('app.base_path', ''), '/') }}">
 
-    <title>Password Generator</title>
+    <title>Password Generator · Wyrmrest</title>
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet">
-    <link href="https://fonts.bunny.net/css?family=allerta-stencil:400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-wr-canvas text-wr-text-primary">
 
-<img id="background" class="absolute w-full h-full object-cover"
-     src="https://4kwallpapers.com/images/wallpapers/neon-circles-hi-tech-dark-background-loop-5k-8k-7680x4320-8312.png"
-     alt="">
-
-<div class="flex w-full min-h-screen flex-col items-center justify-center">
-    <div class="relative w-full lg:max-w-7xl">
-
-        <header class="flex justify-center gap-2 py-10">
-            <div class="flex select-none">
-                <svg width="100" height="100" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="lockGradient" x1="100%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#BE167A"/>
-                            <stop offset="100%" stop-color="#7873F5"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M16 12V6a4 4 0 0 0-8 0v6H6V6a6 6 0 1 1 12 0v6h-2Z" fill="url(#lockGradient)"/>
-                    <rect x="4" y="8" width="16" height="14" rx="3" ry="3" fill="url(#lockGradient)"/>
-                    <rect x="11" y="13" width="2" height="5" rx="1" fill="#000"/>
-                </svg>
-                <div class="flex flex-col justify-center items-start">
-                    <h1 class="text-gradient text-4xl font-bold">
-                        Password<br>Generator
-                    </h1>
+<main class="min-h-screen px-wr-16 py-wr-24 lg:py-wr-32">
+    <div class="mx-auto grid w-full max-w-5xl gap-wr-16 lg:grid-cols-[0.9fr_1.1fr]">
+        <header class="wr-panel flex flex-col justify-between gap-wr-24">
+            <div class="flex items-center gap-wr-16">
+                <span class="grid h-16 w-16 place-items-center rounded-wr-lg border border-wr-border-strong bg-wr-elevated text-3xl" aria-hidden="true">🔐</span>
+                <div>
+                    <p class="wr-eyebrow">Wyrmrest public tool</p>
+                    <h1 class="text-4xl font-black tracking-wide text-wr-text-primary">Password Generator</h1>
                 </div>
             </div>
+            <p class="text-wr-18 leading-relaxed text-wr-text-secondary">Genera password robuste con regole esplicite, senza uscire dal linguaggio visivo Wyrmrest.</p>
+            <a href="/" class="wr-button wr-button-secondary self-start">Torna all'Hub</a>
         </header>
 
-        <main class="flex items-center justify-center select-none">
-            <div class="w-full flex flex-col items-center justify-center">
+        <section class="wr-panel grid gap-wr-16" aria-labelledby="generator-title">
+            <div>
+                <p class="wr-eyebrow">Output</p>
+                <h2 id="generator-title" class="text-2xl font-extrabold text-wr-text-primary">Password pronta all'uso</h2>
+            </div>
 
-                {{-- Output --}}
-                <div class="relative w-2/5">
-                    <input type="text" id="password" disabled
-                           class="h-12 w-full p-4 pr-12 bg-white rounded-lg border"
-                           placeholder="Generated Password">
-                    <button id="copy" class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
-                        <i class="material-icons text-white">content_copy</i>
-                    </button>
+            <div class="relative">
+                <label for="password" class="sr-only">Password generata</label>
+                <input type="text" id="password" disabled
+                       class="wr-input h-14 pr-16 font-mono text-wr-16"
+                       placeholder="Password generata">
+                <button id="copy" class="wr-icon-button absolute inset-y-0 right-wr-8 my-auto" aria-label="Copia password">
+                    <span aria-hidden="true">⧉</span>
+                </button>
+            </div>
+
+            <div class="grid gap-wr-16 rounded-wr-lg border border-wr-border-subtle bg-wr-surface p-wr-16">
+                <div class="grid gap-wr-12 md:grid-cols-[minmax(0,1fr)_96px]">
+                    <div>
+                        <label for="slider" class="wr-label">Lunghezza password</label>
+                        <input type="range" id="slider" min="6" max="128" value="12" class="wr-range">
+                    </div>
+                    <div>
+                        <label for="length" class="wr-label">Caratteri</label>
+                        <input type="number" id="length" min="6" max="128" value="12" class="wr-input h-11 text-center">
+                    </div>
                 </div>
 
-                {{-- Options panel --}}
-                <div class="mt-4 flex flex-col w-2/5 p-4 bg-white shadow-md border">
-                    <h2 class="text-2xl font-bold text-gradient">Customize your password</h2>
+                <fieldset class="grid gap-wr-8">
+                    <legend class="wr-label">Modalità</legend>
+                    @foreach([
+                        ['easy-say',  'Facile da pronunciare', 'Evita numeri e caratteri speciali'],
+                        ['easy-read', 'Facile da leggere', 'Evita caratteri ambigui: l, I, 1, O, 0'],
+                        ['all', 'Tutti i caratteri', 'Usa qualunque combinazione consentita'],
+                    ] as [$val, $label, $tip])
+                    <label class="wr-choice">
+                        <input type="radio" name="mode" id="mode-{{ $val }}" value="{{ $val }}" @if($val === 'all') checked @endif>
+                        <span>{{ $label }}</span>
+                        <span class="tooltip">
+                            <span class="wr-info" aria-hidden="true">i</span>
+                            <span class="tooltip-text">{{ $tip }}</span>
+                        </span>
+                    </label>
+                    @endforeach
+                </fieldset>
 
-                    {{-- Length --}}
-                    <div class="flex flex-row items-center justify-evenly gap-4 mt-4">
-                        <label for="length" class="text-lg font-bold text-gradient whitespace-nowrap">Password Length</label>
-                        <input type="number" id="length" min="6" max="128" value="12"
-                               class="h-12 text-center bg-white border">
-                        <input type="range" id="slider" min="6" max="128" value="12"
-                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-fuchsia-900">
-                    </div>
-
-                    {{-- Mode --}}
-                    <div class="flex flex-col gap-4 mt-4">
+                <fieldset class="grid gap-wr-8">
+                    <legend class="wr-label">Set caratteri</legend>
+                    <div class="grid gap-wr-8 sm:grid-cols-2">
                         @foreach([
-                            ['easy-say',  'Easy to say',    'Avoid numbers and special characters'],
-                            ['easy-read', 'Easy to read',   'Avoid ambiguous characters: l, I, 1, O, 0'],
-                            ['all',       'All characters', 'Any character combinations'],
-                        ] as [$val, $label, $tip])
-                        <div class="flex items-center gap-2">
-                            <input type="radio" name="mode" id="mode-{{ $val }}" value="{{ $val }}"
-                                   @if($val === 'all') checked @endif
-                                   class="form-radio text-gradient focus:ring-0 cursor-pointer">
-                            <label for="mode-{{ $val }}" class="text-base">{{ $label }}</label>
-                            <div class="tooltip">
-                                <i class="material-icons text-gradient cursor-pointer">info</i>
-                                <span class="tooltip-text border">{{ $tip }}</span>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-
-                    {{-- Character types --}}
-                    <div class="mt-4 grid grid-cols-2 gap-2">
-                        @foreach([
-                            ['uppercase', 'Uppercase'],
-                            ['lowercase', 'Lowercase'],
-                            ['numbers',   'Numbers'],
-                            ['symbols',   'Symbols'],
+                            ['uppercase', 'Maiuscole'],
+                            ['lowercase', 'Minuscole'],
+                            ['numbers', 'Numeri'],
+                            ['symbols', 'Simboli'],
                         ] as [$id, $label])
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="{{ $id }}" checked
-                                   class="form-checkbox focus:ring-0 cursor-pointer">
+                        <label class="wr-choice">
+                            <input type="checkbox" id="{{ $id }}" checked>
                             <span>{{ $label }}</span>
                         </label>
                         @endforeach
                     </div>
-                </div>
-
-                <button id="generate"
-                        class="mt-4 w-1/5 px-6 py-3 text-lg font-bold text-white button rounded-lg">
-                    Generate
-                </button>
-
+                </fieldset>
             </div>
-        </main>
+
+            <button id="generate" class="wr-button wr-button-primary min-h-[44px] w-full text-wr-16">
+                Genera password
+            </button>
+        </section>
     </div>
-</div>
+</main>
 
 </body>
 </html>
