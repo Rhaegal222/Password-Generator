@@ -1,6 +1,6 @@
 {
     "name": "Password Generator",
-    "icon": "🔐",
+    "icon": "",
     "url": "/password-generator",
     "description": "Secure password generator with configurable character sets and cryptographic randomness",
     "badge": "live"
