@@ -14,6 +14,7 @@
     <meta name="base-path" content="{{ $basePath }}">
     <title>Password Generator · Wyrmrest</title>
     <link rel="icon" href="{{ $basePath }}/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ $basePath }}/ui-core.css">
     @if($cssEntry)
         <link rel="stylesheet" href="{{ $assetPath($cssEntry) }}">
     @endif
