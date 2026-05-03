@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.WYRMREST_DISPATCH_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
           repository: Rhaegal222/wyrmrest
           event-type: deploy-password-generator
           client-payload: |
