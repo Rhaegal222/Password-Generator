@@ -85,6 +85,16 @@ body {
   justify-content: space-between;
 }
 
+@media (max-width: 1024px) {
+  .pg-hero {
+    position: sticky;
+    top: 1rem;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
 .pg-hero__top {
   display: flex;
   align-items: center;
